@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afsin Sultana | Portfolio</title>
+    <style>
+        /* ---------- COLOR TOKENS: ---------- */
+        
+         :root {
+            --black: #0b0710;
+            --black-2: #140c1c;
+            --purple: #b2a5c8;
+            --purple-deep: #674b90;
+            --pink: #ff4fd8;
+            --pink-soft: #ff9de2;
+            --text: #f3ecfb;
+            --text-dim: #c9b8e0;
+            --border: rgba(255, 79, 216, 0.35);
+            --font-head: 'Poppins', 'Segoe UI', sans-serif;
+            --font-body: 'Inter', 'Segoe UI', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: radial-gradient(circle at 15% 0%, var(--purple-deep) 0%, transparent 45%), radial-gradient(circle at 85% 20%, var(--pink) 0%, transparent 35%), var(--black);
+            color: var(--text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        a {
+            color: var(--pink-soft);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: var(--pink);
+        }
+        
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-head);
+        }
+        
+        section {
+            padding: 80px 8vw;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* ---------- NAV ---------- */
+        
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8vw;
+            background: rgba(11, 7, 16, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        nav .logo {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1.3rem;
+            background: linear-gradient(90deg, var(--pink), var(--purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+        
+        nav ul a {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+        
+        nav ul a:hover {
+            color: var(--pink);
+        }
+        /* ---------- HERO ---------- */
+        
+        .hero {
+            min-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+        }
+        
+        .hero .eyebrow {
+            color: var(--pink-soft);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-bottom: 14px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.4rem, 6vw, 4.5rem);
+            background: linear-gradient(100deg, var(--text) 20%, var(--pink) 60%, var(--purple) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+        }
+        
+        .hero p.tagline {
+            margin-top: 20px;
+            max-width: 620px;
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+        
+        .hero .cta-row {
+            margin-top: 34px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 26px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid var(--border);
+            transition: all .25s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .btn-fill {
+            background: linear-gradient(90deg, var(--purple), var(--pink));
+            color: var(--black);
+        }
+        
+        .btn-fill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(255, 79, 216, 0.35);
+            color: var(--black);
+        }
+        
+        .btn-ghost {
+            color: var(--text);
+        }
+        
+        .btn-ghost:hover {
+            border-color: var(--pink);
+            color: var(--pink);
+        }
+        /* ---------- SECTION HEADERS ---------- */
+        
+        .sec-title {
+            font-size: clamp(1.6rem, 3vw, 2.3rem);
+            margin-bottom: 8px;
+        }
+        
+        .sec-sub {
+            color: var(--text-dim);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+        /* ---------- ABOUT ---------- */
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 40px;
+        }
+        
+        @media(max-width:720px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .about-card {
+            background: var(--black-2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+        }
+        
+        .about-card h3 {
+            color: var(--pink-soft);
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+        
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        
+        .pill {
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            background: rgba(123, 47, 247, 0.1);
+        }
+        
+        .pill a {
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            background: rgba(123, 47, 247, 0.1);
+            display: inline-block;
+        }
+        
+        .pill a:hover {
+            border-color: var(--pink);
+            color: var(--pink);
+        }
+        /*---------- EXPERIENCE / EDUCATION TIMELINE ---------- */
+        
+        .timeline {
+            border-left: 2px solid var(--border);
+            padding-left: 28px;
+        }
+        
+        .t-item {
+            position: relative;
+            margin-bottom: 32px;
+        }
+        
+        .t-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--pink);
+            box-shadow: 0 0 12px var(--pink);
+        }
+        
+        .t-item .role {
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .t-item .org {
+            color: var(--pink-soft);
+            font-size: 0.9rem;
+        }
+        
+        .t-item .when {
+            color: var(--text-dim);
+            font-size: 0.82rem;
+            margin-bottom: 6px;
+        }
+        
+        .t-item ul {
+            margin-left: 18px;
+            color: var(--text-dim);
+            font-size: 0.92rem;
+        }
+        
+        .t-item li {
+            margin-bottom: 4px;
+        }
+        /* ---------- PROJECTS ---------- */
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 26px;
+        }
+        
+        .project-card {
+            background: linear-gradient(160deg, var(--black-2), rgba(75, 30, 145, 0.25));
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform .25s ease, border-color .25s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--pink);
+        }
+        
+        .project-card h3 {
+            color: var(--text);
+            font-size: 1.15rem;
+        }
+        
+        .project-card p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+        
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 4px;
+        }
+        
+        .tag {
+            font-size: 0.72rem;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: rgba(255, 79, 216, 0.12);
+            color: var(--pink-soft);
+            border: 1px solid var(--border);
+        }
+        
+        .project-links {
+            margin-top: auto;
+            display: flex;
+            gap: 14px;
+            padding-top: 8px;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+        }
+        /* ---------- CERTS / PUBLICATIONS / PROFILES ---------- */
+        
+        .list-card {
+            background: var(--black-2);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .list-card .name {
+            font-weight: 600;
+        }
+        
+        .list-card .meta {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+        
+        .list-card a {
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+        /* ---------- FAQ ---------- */
+        
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 18px 0;
+            cursor: pointer;
+        }
+        
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-q .plus {
+            color: var(--pink);
+            font-size: 1.3rem;
+            transition: transform .25s ease;
+        }
+        
+        .faq-item.open .plus {
+            transform: rotate(45deg);
+        }
+        
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .3s ease;
+            color: var(--text-dim);
+            font-size: 0.92rem;
+        }
+        
+        .faq-item.open .faq-a {
+            max-height: 220px;
+            padding-top: 12px;
+        }
+        /*  CONTACT   */
+        
+        .contact-wrap {
+            background: linear-gradient(135deg, var(--purple-deep), var(--black));
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 50px 8vw;
+            text-align: center;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+        
+        .contact-links a {
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 999px;
+            color: var(--text);
+            transition: all .25s ease;
+        }
+        
+        .contact-links a:hover {
+            border-color: var(--pink);
+            color: var(--pink);
+        }
+        
+        form.mail-form {
+            max-width: 480px;
+            margin: 34px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        
+        form.mail-form input,
+        form.mail-form textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: all .25s ease;
+        }
+        
+        form.mail-form input::placeholder,
+        form.mail-form textarea::placeholder {
+            color: var(--text-dim);
+        }
+        
+        form.mail-form input:focus,
+        form.mail-form textarea:focus {
+            outline: none;
+            border-color: var(--pink);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        form.mail-form button {
+            background: linear-gradient(90deg, var(--purple), var(--pink));
+            border: none;
+            border-radius: 999px;
+            padding: 12px;
+            color: var(--black);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .25s ease;
+            font-size: 0.95rem;
+        }
+        
+        form.mail-form button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(255, 79, 216, 0.35);
+        }
+        
+        form.mail-form button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
+        .form-message {
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            display: none;
+            margin-top: 8px;
+        }
+        
+        .form-message.success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.5);
+            color: #a5d6a7;
+            display: block;
+        }
+        
+        .form-message.error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid rgba(244, 67, 54, 0.5);
+            color: #ef9a9a;
+            display: block;
+        }
+        
+        form.mail-form small {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 12px;
+                padding: 12px 8vw;
+            }
+            nav ul {
+                gap: 14px;
+                justify-content: center;
+            }
+            section {
+                padding: 50px 8vw;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-links {
+                flex-direction: column;
+            }
+            .contact-wrap {
+                padding: 40px 6vw;
+            }
+            form.mail-form {
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAV ===== -->
+    <nav>
+        <div class="logo">Afsin Sultana</div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certs">Certifications</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="eyebrow">CSE Student · Web & Data Enthusiast</div>
+        <h1>Building software<br>that solves real problems.</h1>
+        <p class="tagline">
+            I'm Afsin Sultana, a Computer Science & Engineering student at East West University. I build with HTML, CSS, JavaScript, PHP and Python — and I'm currently deep in Data Analysis and Machine Learning.
+        </p>
+        <div class="cta-row">
+            <a class="btn btn-fill" href="#contact">Get in touch</a>
+            <a class="btn btn-ghost" href="#projects">See my work</a>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about">
+        <h2 class="sec-title">About</h2>
+        <p class="sec-sub">A quick snapshot of who I am and what I work with.</p>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>Objective</h3>
+                <p style="color:var(--text-dim)">
+                    Computer Science and Engineering student at EWU with a strong passion for web development and data-driven solutions. Experienced in frontend development (HTML, CSS, Bootstrap, JavaScript), backend development (PHP), and databases (MySQL). Currently learning
+                    Data Analysis and Machine Learning to build smarter, data-driven applications.
+                </p>
+            </div>
+            <div class="about-card">
+                <h3>Skills</h3>
+                <div class="pill-row">
+                    <span class="pill">C / C++ / Python / Java</span>
+                    <span class="pill">HTML · CSS · Bootstrap · JS</span>
+                    <span class="pill">Django · PHP · SQL</span>
+                    <span class="pill">MySQL · PostgreSQL</span>
+                    <span class="pill">Git · VS Code</span>
+                    <span class="pill">DSA · OOP</span>
+                </div>
+                <h3 style="margin-top:20px;">Coding Profiles</h3>
+                <div class="pill-row">
+                    <a class="pill" href="https://www.hackerrank.com/profile/afsinsultana2001" target="_blank">HackerRank ↗</a>
+                    <a class="pill" href="https://codeforces.com/profile/afsinnarpiii" target="_blank">Codeforces ↗</a>
+                    <a class="pill" href="https://leetcode.com/u/AfsinSultanaaaa/" target="_blank">LeetCode ↗</a>
+                    <a class="pill" href="https://github.com/Afarrobo" target="_blank">GitHub ↗</a>
+                    <a class="pill" href="https://www.researchgate.net/profile/Afsin-Sultana" target="_blank">Researchgate Profile ↗</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIENCE + EDUCATION ===== -->
+    <section id="experience">
+        <h2 class="sec-title">Experience & Education</h2>
+        <p class="sec-sub">My professional journey so far.</p>
+        <div class="timeline">
+            <div class="t-item">
+                <div class="role">Research Intern — BIIHR</div>
+                <div class="org">
+                    Bangladesh Institute of Innovative Health Research
+                </div>
+                <div class="when">May 2026 – July 2026 · Dhaka</div>
+                <ul>
+                    <li>Data analysis</li>
+                    <li>Research on CKD (Chronic Kidney Disease) analysis</li>
+                </ul>
+            </div>
+
+            <div class="t-item">
+                <div class="role">B.Sc. in Computer Science & Engineering</div>
+                <div class="org">East West University — GPA 3.20/4.00</div>
+                <div class="when">Feb 2022 – Aug 2026 · Dhaka</div>
+            </div>
+
+            <div class="t-item">
+                <div class="role">HSC — Grade 5.00</div>
+                <div class="org">Bir Uttam Lt Anwar Girls' School & College</div>
+                <div class="when">2020 · Dhaka</div>
+            </div>
+
+            <div class="t-item">
+                <div class="role">SSC — GPA 5.00</div>
+                <div class="org">National Ideal School</div>
+                <div class="when">2018 · Khilgaon, Dhaka</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects">
+        <h2 class="sec-title">Projects</h2>
+        <p class="sec-sub">A few things I've built.</p>
+        <div class="project-grid">
+
+            <div class="project-card">
+                <h3>RecomPro</h3>
+                <p>An aspect-aware multilingual product recommendation system built with FastAPI, PostgreSQL, and React (Vite).</p>
+                <div class="tag-row">
+                    <span class="tag">FastAPI</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">React</span>
+                    <span class="tag">Vite</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Afarrobo/RecomPro" target="_blank">GitHub Repo ↗</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Disaster Response Object Detection</h3>
+                <p>Object detection system using YOLOv8/10/11/12 to identify disaster-affected areas and objects, fine-tuned and evaluated with precision, recall and mAP metrics.</p>
+                <div class="tag-row">
+                    <span class="tag">Python</span>
+                    <span class="tag">YOLOv10/11/12</span>
+                    <span class="tag">Computer Vision</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Afarrobo/cse475_Machine_learning" target="_blank">GitHub Repo ↗</a>
+                    <a href="https://afarrobo.github.io/cse475_Machine_learning/" target="_blank">Live Demo ↗</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Hospital Management System</h3>
+                <p>Full-stack hospital management web app with doctor/patient registration, role-based access, appointment scheduling, and medical records module.</p>
+                <div class="tag-row">
+                    <span class="tag">PHP</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">Bootstrap</span>
+                    <span class="tag">JS</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Afarrobo/Hospital_management_with_PHP" target="_blank">GitHub Repo ↗</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PUBLICATION Alert -->
+    <section id="publication">
+        <h2 class="sec-title">Publication</h2>
+        <div class="list-card">
+            <div>
+                <div class="name">AI-Assisted PCOS Screening from Ultrasound Using Vision Transformers and Explainable Attention</div>
+                <div class="meta">Afsin Sultana, et al. (2026) · ICECTE 2026</div>
+            </div>
+            <a href="https://ieeexplore.ieee.org/document/11429340" target="_blank">Link ↗</a>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS  -->
+    <section id="certs">
+        <h2 class="sec-title">Certifications</h2>
+        <p class="sec-sub">Courses and bootcamps I've completed.</p>
+
+        <div class="list-card">
+            <div>
+                <div class="name">Introduction to Natural Language Processing in Python</div>
+                <div class="meta">DataCamp · Jan 2026</div>
+            </div>
+            <a href="https://drive.google.com/file/d/1u8KuM_0lNHBe_6wcyu6_r_0VpQpQ-EXp/view" target="_blank">View ↗</a>
+        </div>
+
+        <div class="list-card">
+            <div>
+                <div class="name">Global Research Bootcamp</div>
+                <div class="meta">Bangladesh Institute of Innovative Health Research (BIIHR) · Jun 2026</div>
+            </div>
+            <a href="https://drive.google.com/file/d/1Itu7SfuVt_L19O1Y7rcC0oM7Icamo_mp/view" target="_blank">View ↗</a>
+        </div>
+
+        <div class="list-card">
+            <div>
+                <div class="name">Introduction to Machine Learning</div>
+                <div class="meta">Kaggle</div>
+            </div>
+            <a href="https://drive.google.com/file/d/1taaSvH9VanNbtO_JS0wA8f0lbeDgpMQh/view" target="_blank">View ↗</a>
+        </div>
+
+        <div class="list-card">
+            <div>
+                <div class="name">Exploratory Data Analysis in Python</div>
+                <div class="meta">DataCamp · Jun 2026</div>
+            </div>
+            <a href="https://drive.google.com/file/d/1u9SfzOuLELmIFJ7g0rq01o_tGiVX-vAx/view" target="_blank">View ↗</a>
+        </div>
+
+        <div class="list-card">
+            <div>
+                <div class="name">Certificate of Contribution</div>
+                <div class="meta">ICECTE 2026</div>
+            </div>
+            <a href="https://drive.google.com/file/d/1spF8yatzgRFbIwQIC66X8kMCuIpIX0mJ/view" target="_blank">View ↗</a>
+        </div>
+    </section>
+
+    <!-- FAQ  :)  -->
+    <section id="faq">
+        <h2 class="sec-title">FAQ</h2>
+        <p class="sec-sub">Things people ask me in interviews.</p>
+
+        <div class="faq-item">
+            <div class="faq-q"><span>What is your biggest strength?</span><span class="plus">+</span></div>
+            <div class="faq-a">I'm punctual and a fast learner. I take responsibility for my work, adapt quickly to new technologies, and always try to improve my skills.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q"><span>What is your learning process?</span><span class="plus">+</span></div>
+            <div class="faq-a">I prefer a hands-on learning approach. I usually start by watching a few YouTube tutorials to understand the basics, then take detailed notes, build small projects, and analyze how everything works. This helps me understand concepts deeply
+                rather than simply memorizing them.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q"><span>What is your weak point?</span><span class="plus">+</span></div>
+            <div class="faq-a">I sometimes spend extra time exploring and refining a solution because I like to understand things thoroughly. I'm improving this by setting clear priorities and time limits so I can maintain a balance between depth and efficiency.</div>
+        </div>
+    </section>
+
+    <!--  CONTACT with me :) -->
+    <section id="contact">
+        <div class="contact-wrap">
+            <h2 class="sec-title">Let's talk</h2>
+            <p style="color:var(--text-dim)">Got a project in mind? Just want to chat? Drop me a message and I'll get back to you soon! 👋</p>
+
+            <form class="mail-form" id="mailForm" method="POST">
+                <input type="text" name="name" id="nameInput" placeholder="Your name" required autocomplete="name">
+
+                <input type="email" name="email" id="emailInput" placeholder="Your email" required autocomplete="email">
+
+                <textarea name="message" id="msgInput" rows="4" placeholder="Your message..." required></textarea>
+
+                <button type="submit" id="submitBtn">Send message</button>
+                <div class="form-message" id="formMessage"></div>
+                <small>✓ Emails go directly to afsinsultana2001@gmail.com</small>
+            </form>
+
+            <div class="contact-links" style="margin-top: 40px; border-top: 1px solid var(--border); padding-top: 30px;">
+                <a href="mailto:afsinsultana2001@gmail.com">✉ Email</a>
+                <a href="tel:01968950021">📞 Phone</a>
+                <a href="https://github.com/Afarrobo" target="_blank">GitHub</a>
+                <a href="https://www.hackerrank.com/profile/afsinsultana2001" target="_blank">HackerRank</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 Afsin Sultana. Built with HTML, CSS & JavaScript.
+    </footer>
+
+    <script>
+        // FAQ 
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('open');
+            });
+        });
+
+        // Contact Form Handler using EmailJS
+        const mailForm = document.getElementById('mailForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const formMessage = document.getElementById('formMessage');
+
+        // Initialize EmailJS (free service)
+        (function() {
+            emailjs.init("8TN71qJZHWz-U42Eb"); // Public key for EmailJS
+        })();
+
+        mailForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('nameInput').value;
+            const email = document.getElementById('emailInput').value;
+            const message = document.getElementById('msgInput').value;
+
+            // Disable button during submission
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            formMessage.className = 'form-message';
+            formMessage.textContent = '';
+
+            try {
+                // Send email using EmailJS
+                const response = await emailjs.send("service_wbe5dil", "template_1a2b3c4d", {
+                    to_email: "afsinsultana2001@gmail.com",
+                    from_name: name,
+                    from_email: email,
+                    message: message,
+                    reply_to: email
+                });
+
+                if (response.status === 200) {
+                    // Success
+                    formMessage.className = 'form-message success';
+                    formMessage.textContent = '✓ Message sent! I\'ll get back to you soon 🎉';
+                    mailForm.reset();
+                    submitBtn.textContent = 'Send message';
+                    submitBtn.disabled = false;
+
+                    // Clear message after 5 seconds
+                    setTimeout(() => {
+                        formMessage.className = 'form-message';
+                        formMessage.textContent = '';
+                    }, 5000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                // Error
+                formMessage.className = 'form-message error';
+                formMessage.textContent = '✗ Oops! Something went wrong. Try emailing me directly.';
+                submitBtn.textContent = 'Send message';
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+
+    <!-- EmailJS Library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/index.min.js"></script>
+
+</body>
+
+</html>
