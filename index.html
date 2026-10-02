@@ -1075,7 +1075,7 @@
                 opacity: 1 !important;
             }
         }
-        /* ===== SOFT FALLING STARS (behind all content) ===== */
+        /* ===== FALLING STARS (behind all content, never blocks text or clicks) ===== */
         
         #stars {
             position: fixed;
@@ -1537,14 +1537,14 @@
             behavior: 'smooth'
         }));
 
-        // Soft falling stars: faint twinkling dots + occasional gentle shooting star
+        // Falling stars (behind all content, never blocks text or clicks)
         (function() {
             const cv = document.getElementById('stars'),
                 ctx = cv.getContext('2d');
             let W, H, dpr, stars = [],
                 shooters = [],
                 last = 0,
-                nextShot = 2500,
+                nextShot = 800,
                 raf;
 
             function resize() {
@@ -1554,30 +1554,29 @@
                 cv.width = W * dpr;
                 cv.height = H * dpr;
                 ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-                const n = Math.round(Math.min(90, W * H / 14000));
+                const n = Math.round(Math.min(140, W * H / 9000));
                 stars = Array.from({
                     length: n
                 }, () => ({
                     x: Math.random() * W,
                     y: Math.random() * H,
-                    r: Math.random() * 1.1 + 0.3,
-                    a: Math.random() * 0.4 + 0.15,
+                    r: Math.random() * 1.3 + 0.5,
+                    a: Math.random() * 0.45 + 0.4,
                     ph: Math.random() * 6.28,
-                    sp: Math.random() * 0.8 + 0.3,
-                    vy: Math.random() * 6 + 3
+                    sp: Math.random() * 1.2 + 0.5,
+                    vy: Math.random() * 18 + 10
                 }));
             }
 
             function spawn() {
-                const x = Math.random() * W * 0.9 + W * 0.1;
                 shooters.push({
-                    x,
+                    x: Math.random() * W * 0.9 + W * 0.1,
                     y: -20,
-                    vx: -(Math.random() * 90 + 110),
-                    vy: Math.random() * 90 + 130,
+                    vx: -(Math.random() * 120 + 160),
+                    vy: Math.random() * 120 + 220,
                     life: 0,
-                    max: 2.2 + Math.random() * 1.2,
-                    len: 70 + Math.random() * 50
+                    max: 1.8 + Math.random() * 1,
+                    len: 90 + Math.random() * 60
                 });
             }
 
@@ -1585,6 +1584,7 @@
                 const dt = Math.min((t - last) / 1000, 0.05);
                 last = t;
                 ctx.clearRect(0, 0, W, H);
+
                 for (const s of stars) {
                     s.y += s.vy * dt;
                     if (s.y > H + 4) {
@@ -1594,13 +1594,17 @@
                     const tw = 0.6 + 0.4 * Math.sin(t / 1000 * s.sp + s.ph);
                     ctx.beginPath();
                     ctx.arc(s.x, s.y, s.r, 0, 6.283);
-                    ctx.fillStyle = 'rgba(255,225,248,' + (s.a * tw).toFixed(3) + ')';
+                    ctx.fillStyle = 'rgba(255,230,250,' + (s.a * tw).toFixed(3) + ')';
+                    ctx.shadowBlur = 6;
+                    ctx.shadowColor = 'rgba(255,120,220,.8)';
                     ctx.fill();
                 }
+                ctx.shadowBlur = 0;
+
                 nextShot -= dt * 1000;
-                if (nextShot <= 0 && shooters.length < 2) {
+                if (nextShot <= 0 && shooters.length < 4) {
                     spawn();
-                    nextShot = 4500 + Math.random() * 4500;
+                    nextShot = 1500 + Math.random() * 2000;
                 }
                 shooters = shooters.filter(o => o.life < o.max);
                 for (const o of shooters) {
@@ -1608,34 +1612,30 @@
                     o.x += o.vx * dt;
                     o.y += o.vy * dt;
                     const k = o.life / o.max,
-                        fade = Math.sin(Math.PI * k) * 0.45;
+                        fade = Math.sin(Math.PI * k) * 0.95;
                     const m = Math.hypot(o.vx, o.vy),
                         tx = o.x - o.vx / m * o.len,
                         ty = o.y - o.vy / m * o.len;
                     const g = ctx.createLinearGradient(o.x, o.y, tx, ty);
-                    g.addColorStop(0, 'rgba(255,200,242,' + fade.toFixed(3) + ')');
-                    g.addColorStop(1, 'rgba(255,200,242,0)');
+                    g.addColorStop(0, 'rgba(255,235,252,' + fade.toFixed(3) + ')');
+                    g.addColorStop(1, 'rgba(255,79,216,0)');
                     ctx.strokeStyle = g;
-                    ctx.lineWidth = 1.4;
+                    ctx.lineWidth = 2;
                     ctx.lineCap = 'round';
                     ctx.beginPath();
                     ctx.moveTo(o.x, o.y);
                     ctx.lineTo(tx, ty);
                     ctx.stroke();
+                    ctx.beginPath();
+                    ctx.arc(o.x, o.y, 2, 0, 6.283);
+                    ctx.fillStyle = 'rgba(255,255,255,' + fade.toFixed(3) + ')';
+                    ctx.fill();
                 }
                 raf = requestAnimationFrame(frame);
             }
+
             resize();
             addEventListener('resize', resize);
-            if (reduce) {
-                for (const s of stars) {
-                    ctx.beginPath();
-                    ctx.arc(s.x, s.y, s.r, 0, 6.283);
-                    ctx.fillStyle = 'rgba(255,225,248,' + s.a + ')';
-                    ctx.fill();
-                }
-                return;
-            }
             document.addEventListener('visibilitychange', () => {
                 cancelAnimationFrame(raf);
                 if (!document.hidden) {
