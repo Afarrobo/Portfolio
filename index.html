@@ -1,23 +1,34 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Afsin Sultana | Portfolio</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tech stack logos (Devicon) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
     <style>
          :root {
             --black: #0b0710;
             --black-2: #140c1c;
-            --purple: #a09ea5;
-            --purple-deep: #674b90;
-            --pink: #ff4fd8;
-            --pink-soft: #ff9de2;
-            --text: #f3ecfb;
-            --text-dim: #c9b8e0;
+            --purple: #b1aac3;
+            --purple-deep: #442e64;
+            --pink: #821d6c;
+            --pink-soft: #94457c;
+            --text: #fefdff;
+            --text-dim: #f1f0f2;
             --border: rgba(47, 39, 41, 0.35);
             --font-head: 'Poppins', 'Segoe UI', sans-serif;
             --font-body: 'Inter', 'Segoe UI', sans-serif;
@@ -1142,544 +1153,1149 @@
                 cursor: none !important;
             }
         }
+        /* ===== SKILLS WITH LOGOS ===== */
+        
+        .about-card.skills-card {
+            grid-column: 1 / -1;
+        }
+        
+        .skill-group {
+            margin-top: 18px;
+        }
+        
+        .skill-group:first-of-type {
+            margin-top: 6px;
+        }
+        
+        .skill-group h4 {
+            font-family: var(--font-head);
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            margin-bottom: 10px;
+        }
+        
+        .skill-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 14px 6px 6px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .05);
+            color: var(--text);
+            font-size: .85rem;
+            font-weight: 500;
+            transition: transform .2s ease, border-color .2s ease, background .2s ease;
+        }
+        
+        .skill:hover {
+            transform: translateY(-3px);
+            border-color: var(--pink);
+            background: rgba(255, 79, 216, .1);
+        }
+        
+        .skill .ico {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .92);
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            font-size: 18px;
+            line-height: 1;
+            color: #333;
+        }
+        
+        .skill .ico i {
+            font-size: 18px;
+            line-height: 1;
+        }
+        
+        .skill .ico.emoji {
+            font-size: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .skill {
+                font-size: .8rem;
+            }
+        }
     </style>
+
 </head>
 
 <body>
 
     <div id="progress"></div>
+
     <canvas id="stars" aria-hidden="true"></canvas>
+
     <div id="glow"></div>
+
     <div id="flower" aria-hidden="true">
         <div class="fl-inner"><svg viewBox="0 0 40 40"><defs><radialGradient id="pg" cx="50%" cy="85%" r="90%"><stop offset="0" stop-color="#ffd1f3"/><stop offset="1" stop-color="#ff4fd8"/></radialGradient><radialGradient id="cg" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff3b0"/><stop offset="1" stop-color="#ffb347"/></radialGradient></defs><ellipse cx="20" cy="9" rx="5.2" ry="8.5" fill="url(#pg)" transform="rotate(0 20 20)"/><ellipse cx="20" cy="9" rx="5.2" ry="8.5" fill="url(#pg)" transform="rotate(60 20 20)"/><ellipse cx="20" cy="9" rx="5.2" ry="8.5" fill="url(#pg)" transform="rotate(120 20 20)"/><ellipse cx="20" cy="9" rx="5.2" ry="8.5" fill="url(#pg)" transform="rotate(180 20 20)"/><ellipse cx="20" cy="9" rx="5.2" ry="8.5" fill="url(#pg)" transform="rotate(240 20 20)"/><ellipse cx="20" cy="9" rx="5.2" ry="8.5" fill="url(#pg)" transform="rotate(300 20 20)"/><circle cx="20" cy="20" r="4.6" fill="url(#cg)"/></svg></div>
     </div>
+
     <button id="toTop" aria-label="Back to top">↑</button>
 
     <!-- ===== NAV ===== -->
+
     <nav>
+
         <div class="logo">Afsin Sultana</div>
+
         <ul>
+
             <li><a href="#about">About</a></li>
+
             <li><a href="#experience">Experience</a></li>
+
             <li><a href="#projects">Projects</a></li>
+
             <li><a href="#publication">Publications</a></li>
+
             <li><a href="#certs">Certifications</a></li>
+
             <li><a href="#faq">FAQ</a></li>
+
             <li><a href="#contact">Contact</a></li>
+
         </ul>
+
     </nav>
 
     <!-- ===== HERO ===== -->
+
     <section class="hero">
+
         <div class="blob b1"></div>
+
         <div class="blob b2"></div>
+
         <div class="eyebrow">CSE Student · Web & Data Enthusiast</div>
+
         <h1>Building software<br>that solves real problems.</h1>
+
         <p class="tagline">
+
             I'm Afsin Sultana, a Computer Science & Engineering student at East West University. I build with HTML, CSS, JavaScript, PHP and Python — and I'm currently deep in Data Analysis and Machine Learning.
+
         </p>
+
         <div class="typed-line" id="typed"></div>
+
         <div class="cta-row">
+
             <a class="btn btn-fill" href="#contact">Get in touch</a>
+
             <a class="btn btn-ghost" href="#projects">See my work</a>
+
         </div>
+
         <div class="stats">
+
             <div class="stat"><b data-count="2">0</b><span>Publications</span></div>
-            <div class="stat"><b data-count="3">0</b><span>Projects</span></div>
+
+            <!-- Projects count is calculated automatically from the project cards below -->
+            <div class="stat"><b data-count="4" data-auto="projects">0</b><span>Projects</span></div>
+
             <div class="stat"><b data-count="3.24" data-dec="2">0</b><span>CGPA</span></div>
+
         </div>
+
     </section>
 
     <!-- ===== ABOUT ===== -->
+
     <section id="about">
+
         <h2 class="reveal sec-title">About</h2>
+
         <p class="reveal sec-sub">A quick snapshot of who I am and what I work with.</p>
+
         <div class="about-grid">
+
             <div class="about-card reveal">
+
                 <h3>Objective</h3>
+
                 <p style="color:var(--text-dim)">
+
                     Recent Computer Science graduate with experience in web application development, machine learning, data analysis, and research. Seeking a Web Applications Internship to apply skills in HTML, CSS, JavaScript, PHP, MySQL, PostgreSQL, React, and Python.
                     Eager to develop user-focused web applications, work with databases and backend systems, solve technical problems, and contribute to building reliable and scalable web solutions while expanding practical software development experience.
+
                 </p>
+
             </div>
+
             <div class="about-card reveal">
-                <h3>Skills</h3>
+
+                <h3>Coding Profiles</h3>
+
                 <div class="pill-row">
-                    <span class="pill">C / C++ / Python / Java</span>
-                    <span class="pill">HTML · CSS · Bootstrap · JS</span>
-                    <span class="pill">Django · PHP · SQL</span>
-                    <span class="pill">MySQL · PostgreSQL</span>
-                    <span class="pill">Git · VS Code</span>
-                    <span class="pill">DSA · OOP</span>
-                </div>
-                <h3 style="margin-top:20px;">Coding Profiles</h3>
-                <div class="pill-row">
+
                     <a class="pill" href="https://www.hackerrank.com/profile/afsinsultana2001" target="_blank">HackerRank ↗</a>
+
                     <a class="pill" href="https://codeforces.com/profile/afsinnarpiii" target="_blank">Codeforces ↗</a>
+
                     <a class="pill" href="https://leetcode.com/u/AfsinSultanaaaa/" target="_blank">LeetCode ↗</a>
+
                     <a class="pill" href="https://github.com/Afarrobo" target="_blank">GitHub ↗</a>
+
                     <a class="pill" href="https://www.researchgate.net/profile/Afsin-Sultana" target="_blank">Researchgate Profile ↗</a>
+
                 </div>
+
             </div>
+
+            <!-- ===== SKILLS (with logos, matched to projects) ===== -->
+            <div class="about-card skills-card reveal">
+
+                <h3>Skills</h3>
+
+                <div class="skill-group">
+                    <h4>Languages</h4>
+                    <div class="skill-grid">
+                        <span class="skill"><span class="ico"><i class="devicon-c-plain colored"></i></span>C</span>
+                        <span class="skill"><span class="ico"><i class="devicon-cplusplus-plain colored"></i></span>C++</span>
+                        <span class="skill"><span class="ico"><i class="devicon-python-plain colored"></i></span>Python</span>
+                        <span class="skill"><span class="ico"><i class="devicon-java-plain colored"></i></span>Java</span>
+                        <span class="skill"><span class="ico"><i class="devicon-javascript-plain colored"></i></span>JavaScript</span>
+                        <span class="skill"><span class="ico"><i class="devicon-php-plain colored"></i></span>PHP</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <h4>Frontend</h4>
+                    <div class="skill-grid">
+                        <span class="skill"><span class="ico"><i class="devicon-html5-plain colored"></i></span>HTML</span>
+                        <span class="skill"><span class="ico"><i class="devicon-css3-plain colored"></i></span>CSS</span>
+                        <span class="skill"><span class="ico"><i class="devicon-bootstrap-plain colored"></i></span>Bootstrap</span>
+                        <span class="skill"><span class="ico"><i class="devicon-react-original colored"></i></span>React</span>
+                        <span class="skill"><span class="ico"><i class="devicon-vitejs-plain colored"></i></span>Vite</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <h4>Backend & Frameworks</h4>
+                    <div class="skill-grid">
+                        <span class="skill"><span class="ico"><i class="devicon-fastapi-plain colored"></i></span>FastAPI</span>
+                        <span class="skill"><span class="ico"><i class="devicon-django-plain colored"></i></span>Django</span>
+                        <span class="skill"><span class="ico"><i class="devicon-php-plain colored"></i></span>PHP</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <h4>Databases</h4>
+                    <div class="skill-grid">
+                        <span class="skill"><span class="ico"><i class="devicon-postgresql-plain colored"></i></span>PostgreSQL</span>
+                        <span class="skill"><span class="ico"><i class="devicon-mysql-plain colored"></i></span>MySQL</span>
+                        <span class="skill"><span class="ico"><img src="https://cdn.simpleicons.org/duckdb/FFC300" alt="" width="18" height="18"></span>DuckDB</span>
+                        <span class="skill"><span class="ico emoji">🗄️</span>SQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <h4>Data, ML & Visualization</h4>
+                    <div class="skill-grid">
+                        <span class="skill"><span class="ico"><i class="devicon-pandas-original colored"></i></span>Pandas</span>
+                        <span class="skill"><span class="ico"><i class="devicon-plotly-plain colored"></i></span>Plotly</span>
+                        <span class="skill"><span class="ico emoji">🎯</span>YOLOv8/10/11/12</span>
+                        <span class="skill"><span class="ico emoji">👁️</span>Computer Vision</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <h4>Tools & Core CS</h4>
+                    <div class="skill-grid">
+                        <span class="skill"><span class="ico"><i class="devicon-git-plain colored"></i></span>Git</span>
+                        <span class="skill"><span class="ico"><i class="devicon-github-original"></i></span>GitHub</span>
+                        <span class="skill"><span class="ico"><i class="devicon-vscode-plain colored"></i></span>VS Code</span>
+                        <span class="skill"><span class="ico emoji">🧩</span>DSA</span>
+                        <span class="skill"><span class="ico emoji">🏗️</span>OOP</span>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+
     </section>
 
     <!-- ===== EXPERIENCE + EDUCATION ===== -->
+
     <section id="experience">
+
         <h2 class="reveal sec-title">Experience & Education</h2>
+
         <p class="reveal sec-sub">My professional journey so far.</p>
+
         <div class="timeline">
+
             <div class="t-item reveal">
+
                 <div class="role">Research Intern — BIIHR</div>
+
                 <div class="org">Bangladesh Institute of Innovative Health Research</div>
+
                 <div class="when">May 2026 – July 2026 · Dhaka</div>
+
                 <ul>
+
                     <li>Data analysis</li>
+
                     <li>Research on CKD (Chronic Kidney Disease) analysis</li>
+
                 </ul>
+
             </div>
 
             <div class="t-item reveal">
+
                 <div class="role">B.Sc. in Computer Science & Engineering</div>
+
                 <div class="org">East West University — GPA 3.24/4.00</div>
+
                 <div class="when">Feb 2022 – Aug 2026 · Dhaka</div>
+
             </div>
 
             <div class="t-item reveal">
+
                 <div class="role">HSC — Grade 5.00</div>
+
                 <div class="org">Bir Uttam Lt Anwar Girls' School & College</div>
+
                 <div class="when">2020 · Dhaka</div>
+
             </div>
 
             <div class="t-item reveal">
+
                 <div class="role">SSC — GPA 5.00</div>
+
                 <div class="org">National Ideal School</div>
+
                 <div class="when">2018 · Khilgaon, Dhaka</div>
+
             </div>
+
         </div>
+
     </section>
 
     <!-- ===== PROJECTS ===== -->
+
     <section id="projects">
+
         <h2 class="reveal sec-title">Projects</h2>
+
         <p class="reveal sec-sub">A few things I've built.</p>
+
         <div class="project-grid">
 
             <div class="project-card reveal">
+
                 <h3>RecomPro</h3>
+
                 <p>An aspect-aware multilingual product recommendation system built with FastAPI, PostgreSQL, and React (Vite).</p>
+
                 <div class="tag-row">
+
                     <span class="tag">FastAPI</span>
+
                     <span class="tag">PostgreSQL</span>
+
                     <span class="tag">React</span>
+
                     <span class="tag">Vite</span>
+
                 </div>
+
                 <div class="project-links">
+
                     <a href="https://github.com/Afarrobo/RecomPro" target="_blank">GitHub Repo ↗</a>
+
                 </div>
+
             </div>
 
             <div class="project-card reveal">
+
                 <h3>Disaster Response Object Detection</h3>
+
                 <p>Object detection system using YOLOv8/10/11/12 to identify disaster-affected areas and objects, fine-tuned and evaluated with precision, recall and mAP metrics.</p>
+
                 <div class="tag-row">
+
                     <span class="tag">Python</span>
+
                     <span class="tag">YOLOv10/11/12</span>
+
                     <span class="tag">Computer Vision</span>
+
                 </div>
+
                 <div class="project-links">
+
                     <a href="https://github.com/Afarrobo/cse475_Machine_learning" target="_blank">GitHub Repo ↗</a>
+
                     <a href="https://afarrobo.github.io/cse475_Machine_learning/" target="_blank">Live Demo ↗</a>
+
                 </div>
+
             </div>
 
             <div class="project-card reveal">
+
                 <h3>Hospital Management System</h3>
+
                 <p>Full-stack hospital management web app with doctor/patient registration, role-based access, appointment scheduling, and medical records module.</p>
+
                 <div class="tag-row">
+
                     <span class="tag">PHP</span>
+
                     <span class="tag">MySQL</span>
+
                     <span class="tag">Bootstrap</span>
+
                     <span class="tag">JS</span>
+
                 </div>
+
                 <div class="project-links">
+
                     <a href="https://github.com/Afarrobo/Hospital_management_with_PHP" target="_blank">GitHub Repo ↗</a>
+
                 </div>
+
+            </div>
+
+            <!-- ===== PROJECT 4: AUTO DATA ANALYST ===== -->
+
+            <div class="project-card reveal">
+
+                <h3>Auto Data Analyst</h3>
+
+                <p>Developed a full-stack platform for automated analysis of CSV, Excel, and JSON datasets. Implemented data profiling, quality checks, cleaning, outlier detection, statistical analysis, correlation analysis, and interactive visualizations.</p>
+
+                <div class="tag-row">
+
+                    <span class="tag">Python</span>
+
+                    <span class="tag">FastAPI</span>
+
+                    <span class="tag">React</span>
+
+                    <span class="tag">Pandas</span>
+
+                    <span class="tag">DuckDB</span>
+
+                    <span class="tag">Plotly</span>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a href="https://github.com/Afarrobo/Auto-Data-Analysis-System" target="_blank">GitHub Repo ↗</a>
+
+                    <a href="https://auto-data-analysis-system-m963.vercel.app" target="_blank">Live Demo ↗</a>
+
+                </div>
+
             </div>
 
         </div>
+
     </section>
 
     <!-- ===== PUBLICATIONS ===== -->
+
     <section id="publication">
+
         <h2 class="reveal sec-title">Publications</h2>
 
         <div class="list-card reveal">
+
             <div>
+
                 <div class="name">Artificial intelligence for women's reproductive health: A scoping review of global diagnostic trends, methodological gaps, and a translational research agenda for low-resource settings</div>
+
                 <div class="meta">Afsin Sultana, et al. (2026) · PLOS One 21(9)</div>
+
             </div>
+
             <a href="https://doi.org/10.1371/journal.pone.0358557" target="_blank">Link ↗</a>
+
         </div>
 
         <div class="list-card reveal">
+
             <div>
+
                 <div class="name">AI-Assisted PCOS Screening from Ultrasound Using Vision Transformers and Explainable Attention</div>
+
                 <div class="meta">Afsin Sultana, et al. (2026) · ICECTE 2026</div>
+
             </div>
+
             <a href="https://ieeexplore.ieee.org/document/11429340" target="_blank">Link ↗</a>
+
         </div>
+
     </section>
 
     <!-- ===== CERTIFICATIONS ===== -->
+
     <section id="certs">
+
         <h2 class="reveal sec-title">Certifications</h2>
+
         <p class="reveal sec-sub">Courses and bootcamps I've completed.</p>
 
         <div class="list-card reveal">
+
             <div>
+
                 <div class="name">Introduction to Natural Language Processing in Python</div>
+
                 <div class="meta">DataCamp · Jan 2026</div>
+
             </div>
+
             <a href="https://drive.google.com/file/d/1u8KuM_0lNHBe_6wcyu6_r_0VpQpQ-EXp/view" target="_blank">View ↗</a>
+
         </div>
 
         <div class="list-card reveal">
+
             <div>
+
                 <div class="name">Global Research Bootcamp</div>
+
                 <div class="meta">Bangladesh Institute of Innovative Health Research (BIIHR) · Jun 2026</div>
+
             </div>
+
             <a href="https://drive.google.com/file/d/1Itu7SfuVt_L19O1Y7rcC0oM7Icamo_mp/view" target="_blank">View ↗</a>
+
         </div>
 
         <div class="list-card reveal">
+
             <div>
+
                 <div class="name">Introduction to Machine Learning</div>
+
                 <div class="meta">Kaggle</div>
+
             </div>
+
             <a href="https://drive.google.com/file/d/1taaSvH9VanNbtO_JS0wA8f0lbeDgpMQh/view" target="_blank">View ↗</a>
+
         </div>
 
         <div class="list-card reveal">
+
             <div>
+
                 <div class="name">Exploratory Data Analysis in Python</div>
+
                 <div class="meta">DataCamp · Jun 2026</div>
+
             </div>
+
             <a href="https://drive.google.com/file/d/1u9SfzOuLELmIFJ7g0rq01o_tGiVX-vAx/view" target="_blank">View ↗</a>
+
         </div>
 
         <div class="list-card reveal">
+
             <div>
+
                 <div class="name">Certificate of Contribution</div>
+
                 <div class="meta">ICECTE 2026</div>
+
             </div>
+
             <a href="https://drive.google.com/file/d/1spF8yatzgRFbIwQIC66X8kMCuIpIX0mJ/view" target="_blank">View ↗</a>
+
         </div>
+
     </section>
 
     <!-- ===== FAQ ===== -->
+
     <section id="faq">
+
         <h2 class="reveal sec-title">FAQ</h2>
+
         <p class="reveal sec-sub">Things people ask me in interviews.</p>
 
         <div class="faq-item reveal">
+
             <div class="faq-q"><span>What is your biggest strength?</span><span class="plus">+</span></div>
+
             <div class="faq-a">I'm punctual and a fast learner. I take responsibility for my work, adapt quickly to new technologies, and always try to improve my skills.</div>
+
         </div>
 
         <div class="faq-item reveal">
+
             <div class="faq-q"><span>What is your learning process?</span><span class="plus">+</span></div>
+
             <div class="faq-a">I prefer a hands-on learning approach. I usually start by watching a few YouTube tutorials to understand the basics, then take detailed notes, build small projects, and analyze how everything works. This helps me understand concepts deeply
                 rather than simply memorizing them.</div>
+
         </div>
 
         <div class="faq-item reveal">
+
             <div class="faq-q"><span>What is your weak point?</span><span class="plus">+</span></div>
+
             <div class="faq-a">I sometimes spend extra time exploring and refining a solution because I like to understand things thoroughly. I'm improving this by setting clear priorities and time limits so I can maintain a balance between depth and efficiency.</div>
+
         </div>
+
     </section>
 
     <!-- ===== CONTACT (simple, no form) ===== -->
+
     <section id="contact">
+
         <div class="contact-wrap reveal">
+
             <h2 class="sec-title">Let's talk</h2>
+
             <p style="color:var(--text-dim)">Got a project in mind? Just want to chat? Email me at
+
                 <a href="mailto:afsinsultana2001@gmail.com">afsinsultana2001@gmail.com</a> and I'll get back to you soon! 👋</p>
 
             <div class="contact-links">
+
                 <a class="primary" href="mailto:afsinsultana2001@gmail.com?subject=Hello%20Afsin">✉ Email me</a>
+
                 <a href="tel:01968950021">📞 01968950021</a>
+
                 <a href="https://www.linkedin.com/in/afsinsultana" target="_blank" rel="noopener">in LinkedIn</a>
+
             </div>
+
         </div>
+
     </section>
 
     <footer>
+
         © 2026 Afsin Sultana. Built with HTML, CSS & JavaScript.
+
     </footer>
 
     <script>
         // FAQ toggle
+
         document.querySelectorAll('.faq-item').forEach(item => {
+
             item.addEventListener('click', () => item.classList.toggle('open'));
+
         });
 
         // Enable animations only when JS runs
+
         document.documentElement.classList.add('js');
 
         // Scroll reveal with stagger
+
         const revealEls = document.querySelectorAll('.reveal');
+
         revealEls.forEach(el => {
+
             const sibs = [...el.parentElement.children].filter(c => c.classList.contains('reveal'));
+
             el.style.setProperty('--d', Math.min(sibs.indexOf(el), 5) * 0.1 + 's');
+
         });
+
         if ('IntersectionObserver' in window) {
+
             const io = new IntersectionObserver(entries => {
+
                 entries.forEach(e => {
+
                     if (e.isIntersecting) {
+
                         e.target.classList.add('in');
+
                         io.unobserve(e.target);
+
                     }
+
                 });
+
             }, {
+
                 threshold: 0.12
+
             });
+
             revealEls.forEach(el => io.observe(el));
+
         } else {
+
             revealEls.forEach(el => el.classList.add('in'));
+
         }
 
         // Typing effect
+
         const typedEl = document.getElementById('typed');
+
         const words = ['Web Developer', 'Machine Learning Enthusiast', 'Data Analyst', 'Researcher'];
+
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         if (reduce) {
+
             typedEl.textContent = words.join(' · ');
+
         } else {
+
             let w = 0,
+
                 c = 0,
+
                 del = false;
+
             (function tick() {
+
                 const word = words[w];
+
                 typedEl.textContent = word.slice(0, c);
+
                 if (!del && c === word.length) {
+
                     del = true;
+
                     return setTimeout(tick, 1400);
+
                 }
+
                 if (del && c === 0) {
+
                     del = false;
+
                     w = (w + 1) % words.length;
+
                     return setTimeout(tick, 350);
+
                 }
+
                 c += del ? -1 : 1;
+
                 setTimeout(tick, del ? 40 : 90);
+
             })();
+
         }
 
         // Scroll progress bar + active nav link
+
         const bar = document.getElementById('progress');
+
         const links = [...document.querySelectorAll('nav ul a')];
+
         const secs = links.map(a => document.querySelector(a.getAttribute('href')));
 
         function onScroll() {
+
             const h = document.documentElement;
+
             bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+
             let cur = -1;
+
             secs.forEach((sec, i) => {
+
                 if (sec && sec.getBoundingClientRect().top <= 120) cur = i;
+
             });
+
             links.forEach((a, i) => a.classList.toggle('active', i === cur));
+
         }
+
         window.addEventListener('scroll', onScroll, {
+
             passive: true
+
         });
+
         onScroll();
 
         // Cursor glow + card spotlight
+
         const glow = document.getElementById('glow');
+
         window.addEventListener('mousemove', e => {
+
             glow.style.left = e.clientX + 'px';
+
             glow.style.top = e.clientY + 'px';
+
             const card = e.target.closest && e.target.closest('.project-card, .about-card, .list-card');
+
             if (card) {
+
                 const r = card.getBoundingClientRect();
+
                 card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+
                 card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+
             }
+
         }, {
+
             passive: true
+
         });
 
-        // Stat counters
+        // Stat counters (the Projects number is counted automatically from the project cards)
+
+        document.querySelectorAll('[data-auto="projects"]').forEach(el => {
+
+            el.dataset.count = document.querySelectorAll('.project-card').length;
+
+        });
+
         document.querySelectorAll('[data-count]').forEach(el => {
+
             const end = parseFloat(el.dataset.count),
+
                 dec = +(el.dataset.dec || 0);
+
             if (reduce) {
+
                 el.textContent = end.toFixed(dec);
+
                 return;
+
             }
+
             const t0 = performance.now() + 1000,
+
                 dur = 1400;
+
             (function step(t) {
+
                 const k = Math.min(Math.max((t - t0) / dur, 0), 1);
+
                 el.textContent = (end * (1 - Math.pow(1 - k, 3))).toFixed(dec);
+
                 if (k < 1) requestAnimationFrame(step);
+
             })(performance.now());
+
         });
 
         // Back to top
+
         const toTop = document.getElementById('toTop');
+
         window.addEventListener('scroll', () => toTop.classList.toggle('show', window.scrollY > 600), {
+
             passive: true
+
         });
+
         toTop.addEventListener('click', () => window.scrollTo({
+
             top: 0,
+
             behavior: 'smooth'
+
         }));
 
         // Falling stars (behind all content, never blocks text or clicks)
+
         (function() {
+
             const cv = document.getElementById('stars'),
+
                 ctx = cv.getContext('2d');
+
             let W, H, dpr, stars = [],
+
                 shooters = [],
+
                 last = 0,
+
                 nextShot = 800,
+
                 raf;
 
             function resize() {
+
                 dpr = Math.min(window.devicePixelRatio || 1, 2);
+
                 W = innerWidth;
+
                 H = innerHeight;
+
                 cv.width = W * dpr;
+
                 cv.height = H * dpr;
+
                 ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
                 const n = Math.round(Math.min(140, W * H / 9000));
+
                 stars = Array.from({
+
                     length: n
+
                 }, () => ({
+
                     x: Math.random() * W,
+
                     y: Math.random() * H,
+
                     r: Math.random() * 1.3 + 0.5,
+
                     a: Math.random() * 0.45 + 0.4,
+
                     ph: Math.random() * 6.28,
+
                     sp: Math.random() * 1.2 + 0.5,
+
                     vy: Math.random() * 18 + 10
+
                 }));
+
             }
 
             function spawn() {
+
                 shooters.push({
+
                     x: Math.random() * W * 0.9 + W * 0.1,
+
                     y: -20,
+
                     vx: -(Math.random() * 120 + 160),
+
                     vy: Math.random() * 120 + 220,
+
                     life: 0,
+
                     max: 1.8 + Math.random() * 1,
+
                     len: 90 + Math.random() * 60
+
                 });
+
             }
 
             function frame(t) {
+
                 const dt = Math.min((t - last) / 1000, 0.05);
+
                 last = t;
+
                 ctx.clearRect(0, 0, W, H);
 
                 for (const s of stars) {
+
                     s.y += s.vy * dt;
+
                     if (s.y > H + 4) {
+
                         s.y = -4;
+
                         s.x = Math.random() * W;
+
                     }
+
                     const tw = 0.6 + 0.4 * Math.sin(t / 1000 * s.sp + s.ph);
+
                     ctx.beginPath();
+
                     ctx.arc(s.x, s.y, s.r, 0, 6.283);
+
                     ctx.fillStyle = 'rgba(255,230,250,' + (s.a * tw).toFixed(3) + ')';
+
                     ctx.shadowBlur = 6;
+
                     ctx.shadowColor = 'rgba(255,120,220,.8)';
+
                     ctx.fill();
+
                 }
+
                 ctx.shadowBlur = 0;
 
                 nextShot -= dt * 1000;
+
                 if (nextShot <= 0 && shooters.length < 4) {
+
                     spawn();
+
                     nextShot = 1500 + Math.random() * 2000;
+
                 }
+
                 shooters = shooters.filter(o => o.life < o.max);
+
                 for (const o of shooters) {
+
                     o.life += dt;
+
                     o.x += o.vx * dt;
+
                     o.y += o.vy * dt;
+
                     const k = o.life / o.max,
+
                         fade = Math.sin(Math.PI * k) * 0.95;
+
                     const m = Math.hypot(o.vx, o.vy),
+
                         tx = o.x - o.vx / m * o.len,
+
                         ty = o.y - o.vy / m * o.len;
+
                     const g = ctx.createLinearGradient(o.x, o.y, tx, ty);
+
                     g.addColorStop(0, 'rgba(255,235,252,' + fade.toFixed(3) + ')');
+
                     g.addColorStop(1, 'rgba(255,79,216,0)');
+
                     ctx.strokeStyle = g;
+
                     ctx.lineWidth = 2;
+
                     ctx.lineCap = 'round';
+
                     ctx.beginPath();
+
                     ctx.moveTo(o.x, o.y);
+
                     ctx.lineTo(tx, ty);
+
                     ctx.stroke();
+
                     ctx.beginPath();
+
                     ctx.arc(o.x, o.y, 2, 0, 6.283);
+
                     ctx.fillStyle = 'rgba(255,255,255,' + fade.toFixed(3) + ')';
+
                     ctx.fill();
+
                 }
+
                 raf = requestAnimationFrame(frame);
+
             }
 
             resize();
+
             addEventListener('resize', resize);
+
             document.addEventListener('visibilitychange', () => {
+
                 cancelAnimationFrame(raf);
+
                 if (!document.hidden) {
+
                     last = performance.now();
+
                     raf = requestAnimationFrame(frame);
+
                 }
+
             });
+
             raf = requestAnimationFrame(frame);
+
         })();
 
         // Flower cursor
+
         (function() {
+
             if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
             const fl = document.getElementById('flower');
+
             document.documentElement.classList.add('has-flower');
+
             let x = innerWidth / 2,
+
                 y = innerHeight / 2,
+
                 cx = x,
+
                 cy = y,
+
                 running = false;
 
             function loop() {
+
                 cx += (x - cx) * 0.35;
+
                 cy += (y - cy) * 0.35;
+
                 fl.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)';
+
                 if (Math.abs(x - cx) > 0.1 || Math.abs(y - cy) > 0.1) requestAnimationFrame(loop);
+
                 else running = false;
+
             }
+
             addEventListener('mousemove', e => {
+
                 x = e.clientX;
+
                 y = e.clientY;
+
                 fl.classList.add('show');
+
                 if (!running) {
+
                     running = true;
+
                     requestAnimationFrame(loop);
+
                 }
+
                 fl.classList.toggle('hover', !!(e.target.closest && e.target.closest('a, button, .faq-item, .btn')));
+
             }, {
+
                 passive: true
+
             });
+
             addEventListener('mousedown', () => fl.classList.add('down'));
+
             addEventListener('mouseup', () => fl.classList.remove('down'));
+
             document.addEventListener('mouseleave', () => fl.classList.remove('show'));
+
             document.addEventListener('mouseenter', () => fl.classList.add('show'));
+
         })();
     </script>
 
