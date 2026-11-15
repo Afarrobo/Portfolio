@@ -1096,6 +1096,16 @@
             z-index: -1;
             pointer-events: none;
         }
+        /* ===== THREE.JS SHOOTING STARS (behind all content, never blocks text or clicks) ===== */
+        
+        #star3d {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
         /* ===== FLOWER CURSOR (desktop mouse only) ===== */
         
         #flower {
@@ -1237,6 +1247,9 @@
     <div id="progress"></div>
 
     <canvas id="stars" aria-hidden="true"></canvas>
+
+    <!-- Three.js shooting stars layer -->
+    <canvas id="star3d" aria-hidden="true"></canvas>
 
     <div id="glow"></div>
 
@@ -1439,6 +1452,16 @@
         <p class="reveal sec-sub">My professional journey so far.</p>
 
         <div class="timeline">
+
+            <div class="t-item reveal">
+
+                <div class="role">Professional Master's in Information Technology</div>
+
+                <div class="org">Jahangirnagar University</div>
+
+                <div class="when">Nov 2026 – Ongoing · Dhaka</div>
+
+            </div>
 
             <div class="t-item reveal">
 
@@ -1801,6 +1824,9 @@
 
     </footer>
 
+    <!-- Three.js (loaded from CDN - no npm or terminal needed) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     <script>
         // FAQ toggle
 
@@ -2027,6 +2053,7 @@
         }));
 
         // Falling stars (behind all content, never blocks text or clicks)
+        // NOTE: the 2D shooting stars are disabled (shooters.length < 0) because Three.js now draws them.
 
         (function() {
 
@@ -2146,7 +2173,7 @@
 
                 nextShot -= dt * 1000;
 
-                if (nextShot <= 0 && shooters.length < 4) {
+                if (nextShot <= 0 && shooters.length < 0) {
 
                     spawn();
 
@@ -2295,6 +2322,153 @@
             document.addEventListener('mouseleave', () => fl.classList.remove('show'));
 
             document.addEventListener('mouseenter', () => fl.classList.add('show'));
+
+        })();
+    </script>
+
+    <!-- ===== THREE.JS SHOOTING STARS ===== -->
+    <script>
+        (function() {
+
+            if (!window.THREE) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            const canvas = document.getElementById('star3d');
+            const renderer = new THREE.WebGLRenderer({
+                canvas,
+                alpha: true,
+                antialias: true
+            });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+            const scene = new THREE.Scene();
+            let W = innerWidth,
+                H = innerHeight;
+            const camera = new THREE.OrthographicCamera(0, W, H, 0, -10, 10);
+
+            function resize() {
+                W = innerWidth;
+                H = innerHeight;
+                renderer.setSize(W, H, false);
+                camera.right = W;
+                camera.top = H;
+                camera.updateProjectionMatrix();
+            }
+            resize();
+            addEventListener('resize', resize);
+
+            // ---------- Textures (drawn once, reused) ----------
+            function makeTex(w, h, draw) {
+                const c = document.createElement('canvas');
+                c.width = w;
+                c.height = h;
+                draw(c.getContext('2d'), w, h);
+                return new THREE.CanvasTexture(c);
+            }
+
+            const tailTex = makeTex(256, 16, (g, w, h) => {
+                const grad = g.createLinearGradient(0, 0, w, 0);
+                grad.addColorStop(0, 'rgba(255,79,216,0)');
+                grad.addColorStop(0.7, 'rgba(255,150,230,0.6)');
+                grad.addColorStop(1, 'rgba(255,255,255,1)');
+                g.fillStyle = grad;
+                g.fillRect(0, 0, w, h);
+                // soften top/bottom edges
+                g.globalCompositeOperation = 'destination-in';
+                const v = g.createLinearGradient(0, 0, 0, h);
+                v.addColorStop(0, 'rgba(0,0,0,0)');
+                v.addColorStop(0.5, 'rgba(0,0,0,1)');
+                v.addColorStop(1, 'rgba(0,0,0,0)');
+                g.fillStyle = v;
+                g.fillRect(0, 0, w, h);
+            });
+
+            const headTex = makeTex(64, 64, (g, w, h) => {
+                const grad = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2);
+                grad.addColorStop(0, 'rgba(255,255,255,1)');
+                grad.addColorStop(0.3, 'rgba(255,170,235,0.8)');
+                grad.addColorStop(1, 'rgba(255,79,216,0)');
+                g.fillStyle = grad;
+                g.fillRect(0, 0, w, h);
+            });
+
+            // ---------- Shooting stars ----------
+            let stars = [],
+                nextShot = 1200;
+
+            function spawn() {
+                const speed = 650 + Math.random() * 350;
+                const ang = Math.PI + 0.55 + Math.random() * 0.35; // down-left
+                const len = 140 + Math.random() * 100;
+
+                const group = new THREE.Group();
+                const tail = new THREE.Mesh(
+                    new THREE.PlaneGeometry(len, 5),
+                    new THREE.MeshBasicMaterial({
+                        map: tailTex,
+                        transparent: true,
+                        depthWrite: false,
+                        blending: THREE.AdditiveBlending
+                    })
+                );
+                tail.position.x = -len / 2;
+                const head = new THREE.Sprite(new THREE.SpriteMaterial({
+                    map: headTex,
+                    transparent: true,
+                    depthWrite: false,
+                    blending: THREE.AdditiveBlending
+                }));
+                head.scale.set(22, 22, 1);
+                group.add(tail, head);
+
+                const x = W * (0.25 + Math.random() * 0.75);
+                group.position.set(x, H + 20, 0);
+                group.rotation.z = ang;
+                scene.add(group);
+
+                stars.push({
+                    group,
+                    tail,
+                    head,
+                    vx: Math.cos(ang) * speed,
+                    vy: Math.sin(ang) * speed,
+                    life: 0,
+                    max: 1.6 + Math.random() * 0.8
+                });
+            }
+
+            let last = performance.now();
+
+            function frame(t) {
+                const dt = Math.min((t - last) / 1000, 0.05);
+                last = t;
+
+                nextShot -= dt * 1000;
+                if (nextShot <= 0 && stars.length < 3) {
+                    spawn();
+                    nextShot = 2500 + Math.random() * 3500; // gap between stars (ms)
+                }
+
+                stars = stars.filter(s => {
+                    s.life += dt;
+                    s.group.position.x += s.vx * dt;
+                    s.group.position.y += s.vy * dt;
+                    const fade = Math.sin(Math.PI * Math.min(s.life / s.max, 1));
+                    s.tail.material.opacity = fade;
+                    s.head.material.opacity = fade;
+                    if (s.life >= s.max) {
+                        scene.remove(s.group);
+                        s.tail.geometry.dispose();
+                        s.tail.material.dispose();
+                        s.head.material.dispose();
+                        return false;
+                    }
+                    return true;
+                });
+
+                renderer.render(scene, camera);
+                requestAnimationFrame(frame);
+            }
+            requestAnimationFrame(frame);
 
         })();
     </script>
